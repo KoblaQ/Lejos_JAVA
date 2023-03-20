@@ -54,7 +54,7 @@ public class move {
         motorC.close();
 
         System.out.println("Done");
-        motorD.close(); // Release resources when you're done
+        
 
         
 		//EV3LargeRegulatedMotor leftMotor = new EV3LargeRegulatedMotor("D");
