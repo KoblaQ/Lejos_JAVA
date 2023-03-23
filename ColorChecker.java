@@ -14,6 +14,7 @@ public class ColorChecker {
 
     private static EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
    // private static EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S2);
+    //checking to see if it updated
     private static EV3UltrasonicSensor distanceChecker = new EV3UltrasonicSensor(SensorPort.S1);
 
     public static void main(String[] args){
