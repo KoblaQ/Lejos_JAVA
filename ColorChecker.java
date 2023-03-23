@@ -16,6 +16,7 @@ public class ColorChecker {
    // private static EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S2);
     //checking if it updated
     //second check to see if update to edem branch
+    //Third check to confirm
     private static EV3UltrasonicSensor distanceChecker = new EV3UltrasonicSensor(SensorPort.S1);
 
     public static void main(String[] args){
