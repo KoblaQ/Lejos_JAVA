@@ -51,6 +51,7 @@ public class LineFollower extends Thread{
 //	            rightWheel.setSpeed(360);
 	            
 				if(colorDetected < lineColor) {
+					//Color sensor detects black
 					leftWheel.setSpeed(360);
 					rightWheel.setSpeed(180);
 					
@@ -60,6 +61,7 @@ public class LineFollower extends Thread{
 					leftWheel.forward();
 					rightWheel.forward();
 				}else {
+					//Color sensor detects white
 					leftWheel.setSpeed(180);
 					rightWheel.setSpeed(360);
 					
@@ -71,33 +73,25 @@ public class LineFollower extends Thread{
 					
 				}
 			}else {
+				
 				//Stop
 //				Sound.twoBeeps();
 				Sound.twoBeeps();
 				
-				rightWheel.stop();
-				leftWheel.stop();
-				
-				//Turns right and moves forward a bit
-		    	leftWheel.rotate(45);
 		    	
-		    	leftWheel.setSpeed(360);
-		    	rightWheel.setSpeed(360);
+				
+		    	leftWheel.setSpeed(180);
+		    	rightWheel.setSpeed(90);
 		    	
 		    	rightWheel.forward();
 		    	leftWheel.forward();
 		    	
-		    	Delay.msDelay(2000);
+		    	Delay.msDelay(1500);
 		    	
-		    	rightWheel.stop();
-		    	leftWheel.stop();
+		    	leftWheel.setSpeed(90);
+		    	rightWheel.setSpeed(180);
 		    	
-		    	//Turns Right and moves a bit
-		    	
-		    	leftWheel.rotate(-90);
-		    	
-		    	leftWheel.setSpeed(180);
-		    	rightWheel.setSpeed(240);
+		    	Delay.msDelay(500);
 		    	
 		    	rightWheel.forward();
 		    	leftWheel.forward();

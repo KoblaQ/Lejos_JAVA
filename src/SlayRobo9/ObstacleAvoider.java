@@ -72,7 +72,34 @@ public class ObstacleAvoider {
 		    	leftWheel.forward();
 		    }
 			
-		
+		    ightWheel.stop();
+			leftWheel.stop();
+			
+			//Turns right and moves forward a bit
+	    	leftWheel.rotate(45);
+	    	
+	    	leftWheel.setSpeed(180);
+	    	rightWheel.setSpeed(180);
+	    	
+	    	rightWheel.forward();
+	    	leftWheel.forward();
+	    	
+	    	Delay.msDelay(1500);
+	    	
+	    	rightWheel.stop();
+	    	leftWheel.stop();
+	    	
+	    	//Turns Right and moves a bit
+	    	
+	    	rightWheel.rotate(180);
+	    	
+	    	Delay.msDelay(2000);
+	    	
+	    	leftWheel.setSpeed(180);
+	    	rightWheel.setSpeed(180);
+	    	
+	    	rightWheel.forward();
+	    	leftWheel.forward();
 		}
 	}
 		
