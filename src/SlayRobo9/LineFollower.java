@@ -72,37 +72,35 @@ public class LineFollower extends Thread{
 				}
 			}else {
 				//Stop
-				Sound.twoBeeps();
 //				Sound.twoBeeps();
+				Sound.twoBeeps();
 				
-//				rightWheel.stop();
-//				leftWheel.stop();
+				rightWheel.stop();
+				leftWheel.stop();
 				
-//				ObstacleAvoider obstacleAvoider = new ObstacleAvoider(null);
-//				obstacleAvoider.start();
 				//Turns right and moves forward a bit
-//		    	leftWheel.rotate(45);
-//		    	
-//		    	leftWheel.setSpeed(360);
-//		    	rightWheel.setSpeed(360);
-//		    	
-//		    	rightWheel.forward();
-//		    	leftWheel.forward();
-//		    	
-//		    	Delay.msDelay(2000);
-//		    	
-//		    	rightWheel.stop();
-//		    	leftWheel.stop();
-//		    	
-//		    	//Turns Right and moves a bit
-//		    	
-//		    	leftWheel.rotate(-90);
-//		    	
-//		    	leftWheel.setSpeed(180);
-//		    	rightWheel.setSpeed(240);
-//		    	
-//		    	rightWheel.forward();
-//		    	leftWheel.forward();
+		    	leftWheel.rotate(45);
+		    	
+		    	leftWheel.setSpeed(360);
+		    	rightWheel.setSpeed(360);
+		    	
+		    	rightWheel.forward();
+		    	leftWheel.forward();
+		    	
+		    	Delay.msDelay(2000);
+		    	
+		    	rightWheel.stop();
+		    	leftWheel.stop();
+		    	
+		    	//Turns Right and moves a bit
+		    	
+		    	leftWheel.rotate(-90);
+		    	
+		    	leftWheel.setSpeed(180);
+		    	rightWheel.setSpeed(240);
+		    	
+		    	rightWheel.forward();
+		    	leftWheel.forward();
 			}
 			if(Button.getButtons()!=0) {
 	            break;

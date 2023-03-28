@@ -1,5 +1,6 @@
 package SlayRobo9;
 
+import lejos.hardware.Sound;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
@@ -8,7 +9,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
-public class ObstacleAvoider extends Thread {
+public class ObstacleAvoider {
 	private DataExchange DEObj;
 	//In case the obstacle detector needs to exchange data.
 	/*public ObstacleAvoider(DataExchange DE) {
@@ -33,10 +34,15 @@ public class ObstacleAvoider extends Thread {
 	}
 	
 	public void run() {
+		
+		final RegulatedMotor rightWheel = new EV3LargeRegulatedMotor(MotorPort.B);
+		final RegulatedMotor leftWheel = new EV3LargeRegulatedMotor(MotorPort.A);
 		//rightWheel.rotate();
 		while(true) {
 			
 		    if(DEObj.getCMD() == 0) {
+		    	
+		    	Sound.twoBeeps();
 		    	
 		    	rightWheel.stop();
 		    	leftWheel.stop();
