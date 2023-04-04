@@ -4,7 +4,11 @@ public class DataExchange {
 
 	// ObstacleDetector
 	private boolean obstacleDetected = false;
+	//ColorSensor
+	private int lineChecker;
 	
+	
+
 	// Robot has the following commands: Follow Line, Stop
 	private int CMD = 1;
 	public DataExchange() {
@@ -26,6 +30,15 @@ public class DataExchange {
 	
 	public int getCMD() {
 		return CMD;
+	}
+	
+	//Getters and Setters for LineChecker
+	public int getLineChecker() {
+		return lineChecker;
+	}
+
+	public void setLineChecker(int lineChecker) {
+		this.lineChecker = lineChecker;
 	}
 
 }

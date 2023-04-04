@@ -43,8 +43,6 @@ public class ObstacleDetector extends Thread {
 			}else {
 				DEObj.setCMD(0);
 				Sound.twoBeeps();
-//				Sound.twoBeeps();
-				//Throw to the ObstacleAvoider thread
 				
 			}
 			
