@@ -9,6 +9,7 @@ public class ColorSensor extends Thread{
 	//Data Exchange 
 	
 	//data
+	//data2
 	private  DataExchange DEObj ;
 	
 	//Connect Light Sensor to Port S3
