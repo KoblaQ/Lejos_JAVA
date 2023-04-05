@@ -59,7 +59,7 @@ public class LineFollower extends Thread {
 				//Error is a value base on how far off the line the robot is.
 				//If it's positive, the robot is too far on the black
 				//If it's negative, it's too far on the white
-				int error = (lineColor - colorDetected) * 6; //5
+				int error = (lineColor - colorDetected) * 8; //5
 				LCD.drawInt(error, 1, 1);
 				LCD.drawInt(colorDetected, 5, 1);
 				
@@ -72,10 +72,10 @@ public class LineFollower extends Thread {
 			} else {
 				// OBSTACLE DETECTED 
 				DEObj.setCycle(1);
-
 				
+				//If this is the first cycle. 
 				if(count <= 1) {
-					System.out.println("Cycle: " + count);
+					System.out.println("Cycle: " + count);  // Debugging tool
 					//Take a sharp right turn
 					leftWheel.setSpeed(320); //200
 					rightWheel.setSpeed(180); //120
@@ -108,8 +108,8 @@ public class LineFollower extends Thread {
 					Sound.buzz();
 
 				} else if(count > 1){
-					
-					System.out.println("Cycle: " + count);
+					// CELEBRATION after the second cycle.
+					System.out.println("Cycle: " + count); // Debugging tool
 					
 					leftWheel.stop();
 					rightWheel.stop();
@@ -118,20 +118,17 @@ public class LineFollower extends Thread {
 					rightWheel.setSpeed(90);
 					
 					//Celebrate Here
-					Sound.playSample(new File ("imperial_march2.wav"), Sound.VOL_MAX);
 					
-
-					
-
 					leftWheel.forward();
 					rightWheel.backward();
 					
-
-					Sound.playSample(new File ("imperial_march2.wav"), Sound.VOL_MAX);
-				
+					Sound.playSample(new File ("cbat3.wav"), Sound.VOL_MAX);
+					Sound.playSample(new File ("cbat4.wav"), Sound.VOL_MAX);
+					
 					System.out.println("DONE DONE DONE");
 					
 					Delay.msDelay(10000);
+					Sound.twoBeeps();
 					
 					
 				}
