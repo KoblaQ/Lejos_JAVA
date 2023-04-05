@@ -59,7 +59,7 @@ public class LineFollower extends Thread {
 				//Error is a value base on how far off the line the robot is.
 				//If it's positive, the robot is too far on the black
 				//If it's negative, it's too far on the white
-				int error = (lineColor - colorDetected) * 6; //5
+				int error = (lineColor - colorDetected) * 8; //5
 				LCD.drawInt(error, 1, 1);
 				LCD.drawInt(colorDetected, 5, 1);
 				
