@@ -21,7 +21,6 @@ public class ColorSensor extends Thread{
 	//VALUES TO BE USED IN THIS THREAD
 	SensorMode colorValue = colorSensor.getRedMode();
 	int colorDetected;
-//	private final int lineColor = 15; // Measured blackness of the black line as against the white background of zero.
 	
 	public void run() {
 		

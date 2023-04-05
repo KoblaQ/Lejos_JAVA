@@ -19,6 +19,9 @@ public class ObstacleDetector extends Thread {
 	int distanceValue;
 	private final int securityDistance = 20; // Minimum distance to the obstacle
 	
+	//Cycle Tracker
+	//int count = 1;
+	
 	//In case the obstacle detector needs to exchange data.
 	public ObstacleDetector(DataExchange DE) {
 		DEObj = DE;
@@ -41,9 +44,13 @@ public class ObstacleDetector extends Thread {
 				//Relay message to dataExchange to execute command 1 (meaning no obstacle detected)
 				DEObj.setCMD(1);
 			}else {
-				DEObj.setCMD(0);
-				Sound.twoBeeps();
 				
+				DEObj.setCMD(0);
+				
+//				Sound.twoBeeps();
+//				Sound.buzz();
+				
+//				DEObj.setCycle(1);
 			}
 			
 		}

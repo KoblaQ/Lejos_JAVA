@@ -4,6 +4,7 @@ public class DataExchange {
 
 	// ObstacleDetector
 	private boolean obstacleDetected = false;
+	private int count = 1;
 	//ColorSensor
 	private int lineChecker;
 	
@@ -15,7 +16,7 @@ public class DataExchange {
 		
 	}
 	
-	// Getters and Setters
+	// Getters and Setters for ObstacleDetector
 	public void setObstacleDetected(boolean status) {
 		obstacleDetected = status;
 	}
@@ -31,6 +32,14 @@ public class DataExchange {
 	public int getCMD() {
 		return CMD;
 	}
+
+	public int getCycle() {
+		return count;
+	}
+
+	public void setCycle(int cycle) {
+		this.count = this.count + cycle;
+	}
 	
 	//Getters and Setters for LineChecker
 	public int getLineChecker() {
@@ -40,5 +49,7 @@ public class DataExchange {
 	public void setLineChecker(int lineChecker) {
 		this.lineChecker = lineChecker;
 	}
+
+
 
 }
