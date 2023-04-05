@@ -4,6 +4,7 @@ import java.io.File;
 
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
+import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
@@ -32,24 +33,42 @@ public class LineFollower extends Thread {
 			if (DEObj.getCMD() == 1) {
 				//LineFollower code if no obstacle is detected
 
-				if (colorDetected < lineColor) {
-					// Color sensor detects black
-					leftWheel.setSpeed(250);//360
-					rightWheel.setSpeed(120);//180
-
-					leftWheel.forward();
-					rightWheel.forward();
-				} else if(colorDetected > lineColor){
-					// Color sensor detects white
-					
-					leftWheel.setSpeed(120);//180
-					rightWheel.setSpeed(250);//360
+//				if (colorDetected < lineColor) {
+//					// Color sensor detects black
+//					leftWheel.setSpeed(250);//360
+//					rightWheel.setSpeed(120);//180
 //
+//					leftWheel.forward();
+//					rightWheel.forward();
+//				} else if(colorDetected > lineColor){
+//					// Color sensor detects white
+//					
+//					leftWheel.setSpeed(120);//180
+//					rightWheel.setSpeed(250);//360
 //
-					leftWheel.forward();
-					rightWheel.forward();
+//					leftWheel.forward();
+//					rightWheel.forward();
+//
+//				}
+				
 
-				}
+				//The goal is to proportionally turn the robot, based on how far away from the exact line it is
+				
+				int baseSpeed = 250; // 250
+				
+				//Error is a value base on how far off the line the robot is.
+				//If it's positive, the robot is too far on the black
+				//If it's negative, it's too far on the white
+				int error = (lineColor - colorDetected) * 6; //5
+				LCD.drawInt(error, 1, 1);
+				LCD.drawInt(colorDetected, 5, 1);
+				
+				leftWheel.setSpeed(baseSpeed + error);
+				rightWheel.setSpeed(baseSpeed - error);
+				 
+				leftWheel.forward();
+				rightWheel.forward();
+				
 			} else {
 				// OBSTACLE DETECTED 
 				DEObj.setCycle(1);
@@ -109,19 +128,7 @@ public class LineFollower extends Thread {
 					
 
 					Sound.playSample(new File ("imperial_march2.wav"), Sound.VOL_MAX);
-					
-//					Delay.msDelay(1000);
-					
-//					leftWheel.backward();
-//					rightWheel.forward();
-					
-//					Delay.msDelay(1000);
-					
-//					leftWheel.rotate(180);
-//					rightWheel.rotate(45);
-//					
-//					leftWheel.rotate(45);
-//					rightWheel.rotate(180);
+				
 					System.out.println("DONE DONE DONE");
 					
 					Delay.msDelay(10000);
