@@ -7,9 +7,7 @@ import lejos.hardware.sensor.SensorMode;
 public class ColorSensor extends Thread{
 	
 	//Data Exchange 
-	
-	//data
-	//data2
+
 	private  DataExchange DEObj ;
 	
 	//Connect Light Sensor to Port S3
@@ -21,6 +19,7 @@ public class ColorSensor extends Thread{
 		colorSensor.setFloodlight(true);
 	}
 	
+	//data
 	//VALUES TO BE USED IN THIS THREAD
 	SensorMode colorValue = colorSensor.getRedMode();
 	int colorDetected;
