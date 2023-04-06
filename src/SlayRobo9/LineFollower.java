@@ -124,6 +124,7 @@ public class LineFollower extends Thread {
 					leftWheel.forward();
 					rightWheel.backward();
 					
+					// This sound SLAPS!!!
 					Sound.playSample(new File ("cbat3.wav"), Sound.VOL_MAX);
 					Sound.playSample(new File ("cbat4.wav"), Sound.VOL_MAX);
 					
