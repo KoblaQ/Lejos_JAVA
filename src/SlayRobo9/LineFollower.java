@@ -32,6 +32,8 @@ public class LineFollower extends Thread {
 
 			if (DEObj.getCMD() == 1) {
 				//LineFollower code if no obstacle is detected
+				
+				//This code needs to be deleted. We are adopting the new one below.
 
 //				if (colorDetected < lineColor) {
 //					// Color sensor detects black
