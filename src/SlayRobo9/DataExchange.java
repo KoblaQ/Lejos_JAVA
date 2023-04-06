@@ -3,6 +3,7 @@ package SlayRobo9;
 public class DataExchange {
 
 	// ObstacleDetector
+	//data
 	private boolean obstacleDetected = false;
 	private int count = 1;
 	//ColorSensor
