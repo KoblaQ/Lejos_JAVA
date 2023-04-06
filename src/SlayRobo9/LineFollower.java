@@ -64,7 +64,7 @@ public class LineFollower extends Thread {
 				int error = (lineColor - colorDetected) * 8; //5
 				LCD.drawInt(error, 1, 1);
 				LCD.drawInt(colorDetected, 5, 1);
-				
+				//Modify wheel spade based on error
 				leftWheel.setSpeed(baseSpeed + error);
 				rightWheel.setSpeed(baseSpeed - error);
 				 
