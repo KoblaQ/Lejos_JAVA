@@ -4,6 +4,7 @@ public class DataExchange {
 
 	// ObstacleDetector
 	//data
+	//data
 	private boolean obstacleDetected = false;
 	private int count = 1;
 	//ColorSensor
