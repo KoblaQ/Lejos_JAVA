@@ -6,8 +6,7 @@ import lejos.hardware.sensor.SensorMode;
 
 public class ColorSensor extends Thread{
 	
-	//Data Exchange 
-
+	//Data Exchange
 	private  DataExchange DEObj ;
 	
 	//Connect Light Sensor to Port S3
