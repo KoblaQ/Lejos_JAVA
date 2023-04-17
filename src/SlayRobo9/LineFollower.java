@@ -33,27 +33,6 @@ public class LineFollower extends Thread {
 			if (DEObj.getCMD() == 1) {
 				//LineFollower code if no obstacle is detected
 				
-				//This code needs to be deleted. We are adopting the new one below.
-
-//				if (colorDetected < lineColor) {
-//					// Color sensor detects black
-//					leftWheel.setSpeed(250);//360
-//					rightWheel.setSpeed(120);//180
-//
-//					leftWheel.forward();
-//					rightWheel.forward();
-//				} else if(colorDetected > lineColor){
-//					// Color sensor detects white
-//					
-//					leftWheel.setSpeed(120);//180
-//					rightWheel.setSpeed(250);//360
-//
-//					leftWheel.forward();
-//					rightWheel.forward();
-//
-//				}
-				
-
 				//The goal is to proportionally turn the robot, based on how far away from the exact line it is
 				
 				int baseSpeed = 250; // 250
@@ -69,6 +48,7 @@ public class LineFollower extends Thread {
 				rightWheel.setSpeed(baseSpeed - error);
 				 
 				leftWheel.forward();
+				
 				rightWheel.forward();
 				
 			} else {
@@ -79,24 +59,24 @@ public class LineFollower extends Thread {
 				if(count <= 1) {
 					System.out.println("Cycle: " + count);  // Debugging tool
 					//Take a sharp right turn
-					leftWheel.setSpeed(320); //200
-					rightWheel.setSpeed(180); //120
+					leftWheel.setSpeed(320);
+					rightWheel.setSpeed(180);
 
 					rightWheel.forward();
 					leftWheel.forward();
 	 
-					Delay.msDelay(1000);//1000
+					Delay.msDelay(1000);
 					Sound.buzz();
 					
 					
 					//Take a sharp left turn
-					leftWheel.setSpeed(120);//180
-					rightWheel.setSpeed(250);//360
+					leftWheel.setSpeed(120);
+					rightWheel.setSpeed(250);
 
 					leftWheel.forward();
 					rightWheel.forward();
 					
-					Delay.msDelay(3000); //3000
+					Delay.msDelay(3000);
 					Sound.buzz();
 					
 					// Take a sharp right turn to straighten the robot
@@ -119,20 +99,21 @@ public class LineFollower extends Thread {
 					leftWheel.setSpeed(90);
 					rightWheel.setSpeed(90);
 					
-					//Celebrate Here
-					
 					leftWheel.forward();
 					rightWheel.backward();
 					
-					// This sound SLAPS!!!
-					Sound.playSample(new File ("cbat3.wav"), Sound.VOL_MAX);
-					Sound.playSample(new File ("cbat4.wav"), Sound.VOL_MAX);
+					Sound.playSample(new File ("new-super-mario-bros3.wav"), Sound.VOL_MAX);
+					Sound.playSample(new File ("new-super-mario-bros4.wav"), Sound.VOL_MAX);
+					Sound.playSample(new File ("new-super-mario-bros-level-complete.wav"), Sound.VOL_MAX);
+					
+					leftWheel.stop();
+					rightWheel.stop();
 					
 					System.out.println("DONE DONE DONE");
-					
-					Delay.msDelay(10000);
 					Sound.twoBeeps();
+					Delay.msDelay(20000);
 					
+					 
 					
 				}
 				
