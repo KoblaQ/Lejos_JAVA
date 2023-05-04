@@ -39,6 +39,7 @@ public class slayrobotohttp {
         Button.waitForAnyPress();
 
         URL url = null;
+        URL urlCelebration;
   		HttpURLConnection conn = null;
   		InputStreamReader isr = null;
   		BufferedReader br=null;
@@ -49,11 +50,12 @@ public class slayrobotohttp {
 //			url = new URL("http://192.168.0.102:8080/rest/ev3service/sayhello");
 //			url = new URL("http://192.168.1.64:8080/rest/laptopservive/servicename");
 //			url = new URL("http://192.168.0.115:8080/rest/tadaa/tuduu");
-			url = new URL("http://192.168.0.115:8080/rest/celebrationservices/tuduu");
+			url = new URL("http://192.168.0.100:8080/rest/celebrationservices/tuduu");
+			urlCelebration = new URL("http://192.168.0.100:8080/rest/celebrationservices/singlecelebration");
 //			url = new URL("http://192.168.0.101");
 			conn = (HttpURLConnection)url.openConnection();
   			System.out.println(conn.toString()); //Tulostaa vain URLin
-  			System.out.println();
+  			System.out.println(urlCelebration);
 //			if (conn==null) {
 //	  			System.out.println("No connection!!!");
 //			}
