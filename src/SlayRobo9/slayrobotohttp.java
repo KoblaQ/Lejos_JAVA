@@ -51,11 +51,11 @@ public class slayrobotohttp {
 //			url = new URL("http://192.168.1.64:8080/rest/laptopservive/servicename");
 //			url = new URL("http://192.168.0.115:8080/rest/tadaa/tuduu");
 			url = new URL("http://192.168.0.100:8080/rest/celebrationservices/tuduu");
-			urlCelebration = new URL("http://192.168.0.100:8080/rest/celebrationservices/singlecelebration");
+//			url = new URL("http://192.168.0.100:8080/rest/celebrationservices/singlecelebration/4");
 //			url = new URL("http://192.168.0.101");
 			conn = (HttpURLConnection)url.openConnection();
   			System.out.println(conn.toString()); //Tulostaa vain URLin
-  			System.out.println(urlCelebration);
+//  			System.out.println(urlCelebration);
 //			if (conn==null) {
 //	  			System.out.println("No connection!!!");
 //			}
@@ -71,8 +71,10 @@ public class slayrobotohttp {
 			isr = new InputStreamReader(is);
       		br=new BufferedReader(isr);
 			while ((s=br.readLine())!=null){
-				System.out.println(s);
+				System.out.println(s.toString());
 			}
+			
+			
       		
       		/*
       		 * USE THIS TO SPLIT EACH VALUE INTO PARTS
