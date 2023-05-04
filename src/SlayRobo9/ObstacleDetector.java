@@ -29,7 +29,7 @@ public class ObstacleDetector extends Thread {
 	
 	public void run() {
 		
-		while(true) {
+		while(true) { 
 			
 			final SampleProvider distance = obstacleChecker.getDistanceMode();
 			

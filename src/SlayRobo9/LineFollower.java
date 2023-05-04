@@ -129,11 +129,10 @@ public class LineFollower extends Thread {
 					Sound.playSample(new File ("cbat4.wav"), Sound.VOL_MAX);
 					
 					System.out.println("DONE DONE DONE");
-					
-					Delay.msDelay(10000);
+
 					Sound.twoBeeps();
-					
-					
+					Delay.msDelay(20000);
+
 				}
 				
 
