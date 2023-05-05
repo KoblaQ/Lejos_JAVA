@@ -56,7 +56,8 @@ public class LineFollower extends Thread {
 
 				//The goal is to proportionally turn the robot, based on how far away from the exact line it is
 				
-				int baseSpeed = 250; // 250
+//				int baseSpeed = 250; // 250
+				int baseSpeed = DEObj.getBaseSpeed();
 				
 				//Error is a value base on how far off the line the robot is.
 				//If it's positive, the robot is too far on the black

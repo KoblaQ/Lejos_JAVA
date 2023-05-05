@@ -3,7 +3,6 @@ package SlayRobo9;
 
 
 import java.io.BufferedReader;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,67 +28,120 @@ import lejos.hardware.Button;
 import lejos.hardware.Sound;
 
 
-public class slayrobotohttp {
+public class slayrobotohttp extends Thread {
+	
+	private static DataExchange DEObj;
+	
+	public slayrobotohttp(DataExchange DE) {
+		DEObj = DE;
+	}
 
-	public static void main(String[] args) {
-		
-        System.out.println("Read some text from URL\n");
-        System.out.println("Press any key to start");
-        
-        Button.waitForAnyPress();
+	public void run() {
+	    System.out.println("Read some text from URL\n");
+	    System.out.println("Press any key to start");
 
-        URL url = null;
-        URL urlCelebration;
-  		HttpURLConnection conn = null;
-  		InputStreamReader isr = null;
-  		BufferedReader br=null;
+	//  Button.waitForAnyPress();
 
-  		String s=null;
-		try {
-//			url = new URL("https://ev3test-380115.appspot.com/rest/ev3service/sayhello");
-//			url = new URL("http://192.168.0.102:8080/rest/ev3service/sayhello");
-//			url = new URL("http://192.168.1.64:8080/rest/laptopservive/servicename");
-//			url = new URL("http://192.168.0.115:8080/rest/tadaa/tuduu");
-			url = new URL("http://192.168.0.100:8080/rest/celebrationservices/tuduu");
-//			url = new URL("http://192.168.0.100:8080/rest/celebrationservices/singlecelebration/4");
-//			url = new URL("http://192.168.0.101");
-			conn = (HttpURLConnection)url.openConnection();
-  			System.out.println(conn.toString()); //Tulostaa vain URLin
-//  			System.out.println(urlCelebration);
-//			if (conn==null) {
-//	  			System.out.println("No connection!!!");
-//			}
-			InputStream is=null;
-			try {
-				is=conn.getInputStream();
-			}
-			catch (Exception e) {
-	  			System.out.println("Exception conn.getInputSteam()");
-	  			e.printStackTrace();
-	            System.out.println("Cannot get InputStream!");
-			}
-			isr = new InputStreamReader(is);
-      		br=new BufferedReader(isr);
-			while ((s=br.readLine())!=null){
-				System.out.println(s.toString());
-			}
-			
-			
-      		
-      		/*
-      		 * USE THIS TO SPLIT EACH VALUE INTO PARTS
-      		 * NOTICE THE ABSENCE OF A WHILE LOOP BECAUSE WE MIGHT JUST WANT TO GET THE DATA ONCE
-      		 * wHILE LOOP IS GOOD FOR WHEN YOU WANT TO CONSTANTLY BE CHECKING THE DATABASE. 
-			s=br.readLine();
-			String [] values =s.split(" ");
-			*/
-		}
-  		catch(Exception e) {
-  			e.printStackTrace();
-            System.out.println("Some problem!");
-  		}
-        System.out.println("Press any key to FINISH");
-        Button.waitForAnyPress();
+	    URL url1 = null;
+	    HttpURLConnection conn1 = null;
+	    InputStreamReader isr1 = null;
+	    BufferedReader br1 = null;
+
+	    URL url2 = null;
+	    HttpURLConnection conn2 = null;
+	    InputStreamReader isr2 = null;
+	    BufferedReader br2 = null;
+	    
+	    URL url3 = null;
+	    HttpURLConnection conn3 = null;
+	    InputStreamReader isr3 = null;
+	    BufferedReader br3 = null;
+
+	    try {
+	        while (true) {
+	            url1 = new URL("http://192.168.1.181:8080/rest/slayrobotoservices/basespeed");
+	            conn1 = (HttpURLConnection) url1.openConnection();
+//	            System.out.println(conn1.toString()); // Tulostaa vain URLin
+	            InputStream is1 = null;
+	            try {
+	                is1 = conn1.getInputStream();
+	            } catch (Exception e) {
+	                System.out.println("Exception conn1.getInputSteam()");
+	                e.printStackTrace();
+	                System.out.println("Cannot get InputStream from URL 1!");
+	            }
+	            isr1 = new InputStreamReader(is1);
+	            br1 = new BufferedReader(isr1);
+	            String s1 = null;
+	            while ((s1 = br1.readLine()) != null) {
+//	                System.out.println("Response from URL 1: " + s1);
+	                int baseSpeed = Integer.parseInt(s1);
+	                DEObj.setBaseSpeed(baseSpeed);
+	            }
+
+	            url2 = new URL("http://192.168.1.181:8080/rest/slayrobotoservices/cycle");
+	            conn2 = (HttpURLConnection) url2.openConnection();
+//	            System.out.println(conn2.toString()); // Tulostaa vain URLin
+	            InputStream is2 = null;
+	            try {
+	                is2 = conn2.getInputStream();
+	            } catch (Exception e) {
+	                System.out.println("Exception conn2.getInputSteam()");
+	                e.printStackTrace();
+	                System.out.println("Cannot get InputStream from URL 2!");
+	            }
+	            isr2 = new InputStreamReader(is2);
+	            br2 = new BufferedReader(isr2);
+	            String s2 = null;
+	            while ((s2 = br2.readLine()) != null) {
+	                System.out.println("Response from URL 2: " + s2);
+	                int cycle = Integer.parseInt(s2);
+	                DEObj.setNewCycle(cycle);
+	                
+	            }
+	            
+	            url3 = new URL("http://192.168.1.181:8080/rest/slayrobotoservices/basespeed");
+	            conn3 = (HttpURLConnection) url1.openConnection();
+//	            System.out.println(conn1.toString()); // Tulostaa vain URLin
+	            InputStream is3 = null;
+	            try {
+	                is3 = conn3.getInputStream();
+	            } catch (Exception e) {
+	                System.out.println("Exception conn1.getInputSteam()");
+	                e.printStackTrace();
+	                System.out.println("Cannot get InputStream from URL 1!");
+	            }
+	            isr3 = new InputStreamReader(is1);
+	            br3 = new BufferedReader(isr1);
+	            String s3 = null;
+	            while ((s3 = br1.readLine()) != null) {
+//	                System.out.println("Response from URL 1: " + s1);
+	                int safety_distance = Integer.parseInt(s1);
+	                DEObj.setSafetyDistance(safety_distance);
+	            }
+
+
+	            Thread.sleep(1000); // wait for 1 second before trying again
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("Some problem!");
+	    } finally {
+	        try {
+	            if (br1 != null) br1.close();
+	            if (isr1 != null) isr1.close();
+	            if (conn1 != null) conn1.disconnect();
+	            if (br2 != null) br2.close();
+	            if (isr2 != null) isr2.close();
+	            if (conn2 != null) conn2.disconnect();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	//  System.out.println("Press any key to FINISH");
+	//  Button.waitForAnyPress();
 	}
 
 }

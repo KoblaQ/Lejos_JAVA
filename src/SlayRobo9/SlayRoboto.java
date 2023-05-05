@@ -9,6 +9,7 @@ public class SlayRoboto {
 		private static ObstacleDetector ODObj = new ObstacleDetector(DE);
 		private static ColorSensor CSObj = new ColorSensor(DE);
 //		START THE HTTPTEST OBJECT HERE
+		private static slayrobotohttp SRHttp = new slayrobotohttp(DE);
 
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub
@@ -16,6 +17,7 @@ public class SlayRoboto {
 			ODObj.start();
 			LFObj.start();
 			CSObj.start();
+			SRHttp.start();
 //			START IT HERE TOO JUST LIKE ABOVE
 //			REMEMBER TO CHANGE ALL THE HARDCODED VALUES IN THE OTHER OBJECTS TO VARIABLES DERRIVED FROM THE DATAEXCHAGE eg. DE.basespeed 
 //			BONUS POINTS: ADD A BUTTON TO START AND STOP THE ROBOT (must be connected to the database) 
