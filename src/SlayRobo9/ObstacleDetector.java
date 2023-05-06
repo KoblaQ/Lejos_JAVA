@@ -17,8 +17,8 @@ public class ObstacleDetector extends Thread {
 	
 	//Distance value that it keeps reading to detect the object.
 	int distanceValue;
-//	private final int securityDistance = 20; // Minimum distance to the obstacle
-	int securityDistance =  DEObj.getSafetyDistance(); // Minimum distance to the obstacle
+	private final int securityDistance = 20; // Minimum distance to the obstacle
+//	int securityDistance =  DEObj.getSafetyDistance(); // Minimum distance to the obstacle
 	
 	
 	//In case the obstacle detector needs to exchange data.
@@ -45,6 +45,8 @@ public class ObstacleDetector extends Thread {
 			}else {
 				
 				DEObj.setCMD(0);
+				int newDistance = Math.round(distanceValue);
+				DEObj.setObstacleDistance(newDistance);
 				
 //				Sound.twoBeeps();
 			}

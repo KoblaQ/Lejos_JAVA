@@ -56,6 +56,11 @@ public class slayrobotohttp extends Thread {
 	    HttpURLConnection conn3 = null;
 	    InputStreamReader isr3 = null;
 	    BufferedReader br3 = null;
+	    
+	    URL url4 = null;
+	    HttpURLConnection conn4 = null;
+	    InputStreamReader isr4 = null;
+	    BufferedReader br4 = null;
 
 	    try {
 	        while (true) {
@@ -101,7 +106,7 @@ public class slayrobotohttp extends Thread {
 	            }
 	            
 	            url3 = new URL("http://192.168.1.181:8080/rest/slayrobotoservices/basespeed");
-	            conn3 = (HttpURLConnection) url1.openConnection();
+	            conn3 = (HttpURLConnection) url3.openConnection();
 //	            System.out.println(conn1.toString()); // Tulostaa vain URLin
 	            InputStream is3 = null;
 	            try {
@@ -114,10 +119,34 @@ public class slayrobotohttp extends Thread {
 	            isr3 = new InputStreamReader(is1);
 	            br3 = new BufferedReader(isr1);
 	            String s3 = null;
-	            while ((s3 = br1.readLine()) != null) {
+	            while ((s3 = br3.readLine()) != null) {
 //	                System.out.println("Response from URL 1: " + s1);
-	                int safety_distance = Integer.parseInt(s1);
+	                int safety_distance = Integer.parseInt(s3);
 	                DEObj.setSafetyDistance(safety_distance);
+	            }
+	            
+	            
+	            if (DEObj.getCMD() == 0) {
+	            
+	            url4 = new URL("http://192.168.1.181:8080/rest/obstacledetectedservices/addobstacle/" + DEObj.getObstacleDistance());
+	            conn4 = (HttpURLConnection) url4.openConnection();
+//	            System.out.println(conn1.toString()); // Tulostaa vain URLin
+	            InputStream is4 = null;
+	            try {
+	                is4 = conn4.getInputStream();
+	            } catch (Exception e) {
+	                System.out.println("Exception conn1.getInputSteam()");
+	                e.printStackTrace();
+	                System.out.println("Cannot get InputStream from URL 1!");
+	            }
+	            isr4 = new InputStreamReader(is1);
+	            br4 = new BufferedReader(isr1);
+	            String s4 = null;
+	            while ((s4 = br4.readLine()) != null) {
+//	                System.out.println("Response from URL 1: " + s1);
+	                int obstacleDistance = Integer.parseInt(s4);
+	                DEObj.setObstacleDistance(obstacleDistance);
+	            }
 	            }
 
 

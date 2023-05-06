@@ -80,5 +80,16 @@ public class DataExchange {
 	public void setSafetyDistance(int safetyDistance) {
 		this.safetyDistance = safetyDistance;
 	}
+	
+	int obstacleDistance;
+
+	public int getObstacleDistance() {
+		return obstacleDistance;
+	}
+
+	public void setObstacleDistance(int obstacleDistance) {
+		this.obstacleDistance = obstacleDistance;
+	}
+	
 
 }
