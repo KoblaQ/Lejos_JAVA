@@ -20,7 +20,8 @@ public class LineFollower extends Thread {
 	public LineFollower(DataExchange DE) {
 		DEObj = DE;
 	}
-	private final int lineColor = 15; // Measured blackness of the black line as against the white background of Zero.
+	// LINECOLOR
+//	private final int lineColor = 15; // Measured blackness of the black line as against the white background of Zero.
 
 	public void run() {
 		// Infinite Task
@@ -29,34 +30,18 @@ public class LineFollower extends Thread {
 			int colorDetected = DEObj.getLineChecker();
 			//Get the count of the cycle 
 			int count = DEObj.getCycle();
+			
+//			//Get the linecolor from the database
+			int lineColor = DEObj.getLineColor();
+
 
 			if (DEObj.getCMD() == 1) {
 				//LineFollower code if no obstacle is detected
 				
-				//This code needs to be deleted. We are adopting the new one below.
-
-//				if (colorDetected < lineColor) {
-//					// Color sensor detects black
-//					leftWheel.setSpeed(250);//360
-//					rightWheel.setSpeed(120);//180
-//
-//					leftWheel.forward();
-//					rightWheel.forward();
-//				} else if(colorDetected > lineColor){
-//					// Color sensor detects white
-//					
-//					leftWheel.setSpeed(120);//180
-//					rightWheel.setSpeed(250);//360
-//
-//					leftWheel.forward();
-//					rightWheel.forward();
-//
-//				}
-				
 
 				//The goal is to proportionally turn the robot, based on how far away from the exact line it is
 				
-//				int baseSpeed = 250; // 250
+				// Basespeed is now set from the database
 				int baseSpeed = DEObj.getBaseSpeed();
 				
 				//Error is a value base on how far off the line the robot is.
@@ -75,9 +60,15 @@ public class LineFollower extends Thread {
 			} else {
 				// OBSTACLE DETECTED 
 				DEObj.setCycle(1);
+				//Send the distance at which it noticed the obstacle to the database.
+//				int newDistance = Math.round(distanceValue); // Convert it to an int from a float 
+//				DEObj.setObstacleDistance(newDistance);
+				
+//				DEObj.setObstacleDistance(count);
+				
 				
 				//If this is the first cycle. 
-				if(count <= 1) {
+				if(count <= DEObj.getNewCycle()) {
 					System.out.println("Cycle: " + count);  // Debugging tool
 					//Take a sharp right turn
 					leftWheel.setSpeed(320); //200
@@ -110,7 +101,7 @@ public class LineFollower extends Thread {
 					Delay.msDelay(750);
 					Sound.buzz();
 
-				} else if(count > 1){
+				} else if(count > DEObj.getNewCycle()){
 					// CELEBRATION after the second cycle.
 					System.out.println("Cycle: " + count); // Debugging tool
 					

@@ -4,7 +4,7 @@ public class DataExchange {
 
 	// ObstacleDetector
 	private boolean obstacleDetected = false;
-	private int count = 1;
+	private int count = 0;
 	// ColorSensor
 	private int lineChecker;
 
@@ -51,7 +51,11 @@ public class DataExchange {
 
 	// PASS THE VALUES TAKEN FROM THE DATABASES THROUGH THE DATAEXCHANGE OBJECT
 //	EACH ONE SHOULD ALREADY HAVE BEEN SPLIT INTO SEPERATE STRING VALUES IN THE HTTPTEST OBJECT.
+	int baseSpeed;
 	int newCycle;
+	int obstacleDistance; // Being sent to the database from the robot
+	int safetyDistance;
+	int lineColor;
 
 	public int getNewCycle() {
 		return newCycle;
@@ -61,8 +65,6 @@ public class DataExchange {
 		this.newCycle = newCycle;
 	}
 
-	int baseSpeed;
-
 	public int getBaseSpeed() {
 		return baseSpeed;
 	}
@@ -70,8 +72,6 @@ public class DataExchange {
 	public void setBaseSpeed(int baseSpeed) {
 		this.baseSpeed = baseSpeed;
 	}
-	
-	int safetyDistance;
 
 	public int getSafetyDistance() {
 		return safetyDistance;
@@ -81,14 +81,20 @@ public class DataExchange {
 		this.safetyDistance = safetyDistance;
 	}
 	
-	int obstacleDistance;
-
 	public int getObstacleDistance() {
 		return obstacleDistance;
 	}
 
 	public void setObstacleDistance(int obstacleDistance) {
 		this.obstacleDistance = obstacleDistance;
+	}
+
+	public int getLineColor() {
+		return lineColor;
+	}
+
+	public void setLineColor(int lineColor) {
+		this.lineColor = lineColor;
 	}
 	
 

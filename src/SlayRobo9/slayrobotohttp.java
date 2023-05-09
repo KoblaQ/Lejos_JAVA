@@ -35,118 +35,79 @@ public class slayrobotohttp extends Thread {
 	public slayrobotohttp(DataExchange DE) {
 		DEObj = DE;
 	}
+	
+	public static String ipAddress = "192.168.0.100"; // Change the ipaddress to the one running with eclipse
+	
 
 	public void run() {
-	    System.out.println("Read some text from URL\n");
-	    System.out.println("Press any key to start");
 
-	//  Button.waitForAnyPress();
 
-	    URL url1 = null;
-	    HttpURLConnection conn1 = null;
-	    InputStreamReader isr1 = null;
-	    BufferedReader br1 = null;
-
-	    URL url2 = null;
-	    HttpURLConnection conn2 = null;
-	    InputStreamReader isr2 = null;
-	    BufferedReader br2 = null;
+	    URL urlSlayRoboto = null;
+	    HttpURLConnection connSlayRoboto = null;
+	    InputStreamReader isrSlayRoboto = null;
+	    BufferedReader brSlayRoboto = null;
 	    
-	    URL url3 = null;
-	    HttpURLConnection conn3 = null;
-	    InputStreamReader isr3 = null;
-	    BufferedReader br3 = null;
 	    
-	    URL url4 = null;
-	    HttpURLConnection conn4 = null;
-	    InputStreamReader isr4 = null;
-	    BufferedReader br4 = null;
+	    URL urlObstacleDistance = null;
+	    HttpURLConnection connObstacleDistance = null;
+	    InputStreamReader isrObstacleDistance = null;
+	    BufferedReader brObstacleDistance = null;
 
 	    try {
 	        while (true) {
-	            url1 = new URL("http://192.168.1.181:8080/rest/slayrobotoservices/basespeed");
-	            conn1 = (HttpURLConnection) url1.openConnection();
-//	            System.out.println(conn1.toString()); // Tulostaa vain URLin
-	            InputStream is1 = null;
+	        	
+	        	//EVERYTHING TO STRING
+	        	urlSlayRoboto = new URL("http://" + ipAddress + ":8080/rest/slayrobotoservices/slayroboto");
+	        	connSlayRoboto = (HttpURLConnection) urlSlayRoboto.openConnection();
+	            InputStream isSlayRoboto  = null;
 	            try {
-	                is1 = conn1.getInputStream();
+	                isSlayRoboto  = connSlayRoboto .getInputStream();
 	            } catch (Exception e) {
 	                System.out.println("Exception conn1.getInputSteam()");
 	                e.printStackTrace();
 	                System.out.println("Cannot get InputStream from URL 1!");
 	            }
-	            isr1 = new InputStreamReader(is1);
-	            br1 = new BufferedReader(isr1);
-	            String s1 = null;
-	            while ((s1 = br1.readLine()) != null) {
-//	                System.out.println("Response from URL 1: " + s1);
-	                int baseSpeed = Integer.parseInt(s1);
+	    	    isrSlayRoboto  = new InputStreamReader(isSlayRoboto );
+	    	    brSlayRoboto  = new BufferedReader(isrSlayRoboto );
+	            String sSlayRoboto  = null;
+	            while ((sSlayRoboto  = brSlayRoboto .readLine()) != null) {
+	            	String [] values =sSlayRoboto.split(" ");
+	            	//Set BaseSpeed
+	                int baseSpeed = Integer.parseInt(values[0]);
 	                DEObj.setBaseSpeed(baseSpeed);
-	            }
-
-	            url2 = new URL("http://192.168.1.181:8080/rest/slayrobotoservices/cycle");
-	            conn2 = (HttpURLConnection) url2.openConnection();
-//	            System.out.println(conn2.toString()); // Tulostaa vain URLin
-	            InputStream is2 = null;
-	            try {
-	                is2 = conn2.getInputStream();
-	            } catch (Exception e) {
-	                System.out.println("Exception conn2.getInputSteam()");
-	                e.printStackTrace();
-	                System.out.println("Cannot get InputStream from URL 2!");
-	            }
-	            isr2 = new InputStreamReader(is2);
-	            br2 = new BufferedReader(isr2);
-	            String s2 = null;
-	            while ((s2 = br2.readLine()) != null) {
-	                System.out.println("Response from URL 2: " + s2);
-	                int cycle = Integer.parseInt(s2);
+	                
+	              //Set Cycle
+	                int cycle = Integer.parseInt(values[1]);
 	                DEObj.setNewCycle(cycle);
 	                
+	              //Set Safety Distance
+	                int safetyDistance = Integer.parseInt(values[2]);
+	                DEObj.setSafetyDistance(safetyDistance);
+	                
+	              //Set lineColor
+	                int lineColor = Integer.parseInt(values[3]);
+	                DEObj.setLineColor(lineColor);
 	            }
 	            
-	            url3 = new URL("http://192.168.1.181:8080/rest/slayrobotoservices/basespeed");
-	            conn3 = (HttpURLConnection) url3.openConnection();
-//	            System.out.println(conn1.toString()); // Tulostaa vain URLin
-	            InputStream is3 = null;
-	            try {
-	                is3 = conn3.getInputStream();
-	            } catch (Exception e) {
-	                System.out.println("Exception conn1.getInputSteam()");
-	                e.printStackTrace();
-	                System.out.println("Cannot get InputStream from URL 1!");
-	            }
-	            isr3 = new InputStreamReader(is1);
-	            br3 = new BufferedReader(isr1);
-	            String s3 = null;
-	            while ((s3 = br3.readLine()) != null) {
-//	                System.out.println("Response from URL 1: " + s1);
-	                int safety_distance = Integer.parseInt(s3);
-	                DEObj.setSafetyDistance(safety_distance);
-	            }
 	            
 	            
 	            if (DEObj.getCMD() == 0) {
-	            
-	            url4 = new URL("http://192.168.1.181:8080/rest/obstacledetectedservices/addobstacle/" + DEObj.getObstacleDistance());
-	            conn4 = (HttpURLConnection) url4.openConnection();
-//	            System.out.println(conn1.toString()); // Tulostaa vain URLin
-	            InputStream is4 = null;
+	            int obstacleDistanceValue = DEObj.getObstacleDistance();
+	            urlObstacleDistance = new URL("http://" + ipAddress + ":8080/rest/obstacledetectedservices/addobstacle/" + obstacleDistanceValue);
+	            connObstacleDistance = (HttpURLConnection) urlObstacleDistance.openConnection();
+	            InputStream isObstacleDistance = null;
 	            try {
-	                is4 = conn4.getInputStream();
+	                isObstacleDistance = connObstacleDistance.getInputStream();
 	            } catch (Exception e) {
 	                System.out.println("Exception conn1.getInputSteam()");
 	                e.printStackTrace();
-	                System.out.println("Cannot get InputStream from URL 1!");
+	                System.out.println("Cannot get InputStream from URL Obstacle Distance!");
 	            }
-	            isr4 = new InputStreamReader(is1);
-	            br4 = new BufferedReader(isr1);
-	            String s4 = null;
-	            while ((s4 = br4.readLine()) != null) {
-//	                System.out.println("Response from URL 1: " + s1);
-	                int obstacleDistance = Integer.parseInt(s4);
-	                DEObj.setObstacleDistance(obstacleDistance);
-	            }
+	            isrObstacleDistance = new InputStreamReader(isObstacleDistance);
+	            brObstacleDistance = new BufferedReader(isrObstacleDistance);
+	            String sObstacleDistance = null;
+	            
+	            System.out.println("Obstacle Distance: " + sObstacleDistance);
 	            }
 
 
@@ -158,19 +119,18 @@ public class slayrobotohttp extends Thread {
 	        System.out.println("Some problem!");
 	    } finally {
 	        try {
-	            if (br1 != null) br1.close();
-	            if (isr1 != null) isr1.close();
-	            if (conn1 != null) conn1.disconnect();
-	            if (br2 != null) br2.close();
-	            if (isr2 != null) isr2.close();
-	            if (conn2 != null) conn2.disconnect();
+	        	//SlayRoboto
+	            if (brSlayRoboto != null) brSlayRoboto.close();
+	            if (isrSlayRoboto != null) isrSlayRoboto.close();
+	            if (connSlayRoboto != null) connSlayRoboto.disconnect();
+	            //Obstacle Distance
+	            if (brObstacleDistance != null) brObstacleDistance.close();
+	            if (isrObstacleDistance != null) isrObstacleDistance.close();
+	            if (connObstacleDistance != null) connObstacleDistance.disconnect();
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
 	    }
-
-	//  System.out.println("Press any key to FINISH");
-	//  Button.waitForAnyPress();
+	    
 	}
-
 }
