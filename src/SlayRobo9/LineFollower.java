@@ -32,7 +32,8 @@ public class LineFollower extends Thread {
 			int count = DEObj.getCycle();
 			
 //			//Get the linecolor from the database
-			int lineColor = DEObj.getLineColor();
+//			int lineColor = DEObj.getLineColor();
+			int lineColor = DEObj.getLineChecker();
 
 
 			if (DEObj.getCMD() == 1) {
@@ -64,7 +65,7 @@ public class LineFollower extends Thread {
 //				int newDistance = Math.round(distanceValue); // Convert it to an int from a float 
 //				DEObj.setObstacleDistance(newDistance);
 				
-//				DEObj.setObstacleDistance(count);
+				DEObj.setObstacleDistance(count);
 				
 				
 				//If this is the first cycle. 

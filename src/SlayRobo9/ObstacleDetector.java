@@ -43,6 +43,9 @@ public class ObstacleDetector extends Thread {
 			if(distanceValue > securityDistance){
 				//Relay message to dataExchange to execute command 1 (meaning no obstacle detected)
 				DEObj.setCMD(1);
+				//Send the distance at which it noticed the obstacle to the database.
+//				int newDistance = Math.round(distanceValue); // Convert it to an int from a float 
+//				DEObj.setObstacleDistance(newDistance);
 			}else {
 				
 				DEObj.setCMD(0);
