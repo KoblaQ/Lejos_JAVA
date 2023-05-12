@@ -5,15 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.net.URL;
-import java.sql.Date;
-import java.sql.Time;
-import java.util.Calendar;
-import java.util.Enumeration;
 
 //import javax.ws.rs.client.Client;
 //import javax.ws.rs.client.ClientBuilder;
@@ -22,8 +14,6 @@ import java.util.Enumeration;
 //import javax.ws.rs.client.WebTarget;
 //import javax.ws.rs.core.MediaType;
 
-import lejos.hardware.Button;
-import lejos.hardware.Sound;
 
 public class slayrobotohttp extends Thread {
 
@@ -33,11 +23,11 @@ public class slayrobotohttp extends Thread {
 		DEObj = DE;
 	}
 
-	public static String ipAddress = "172.31.160.223"; // Change the ipaddress to the one running with eclipse
+	public static String ipAddress = "192.168.0.101"; // Change the ipaddress to the one running with eclipse
 
 	public void run() {
 
-		// Import
+		// Import values from the Slayroboto database
 		URL urlSlayRoboto = null;
 		HttpURLConnection connSlayRoboto = null;
 		InputStreamReader isrSlayRoboto = null;
@@ -58,7 +48,7 @@ public class slayrobotohttp extends Thread {
 		try {
 			while (true) {
 
-				// EVERYTHING TO STRING
+				// Slayroboto values to String
 				urlSlayRoboto = new URL("http://" + ipAddress + ":8080/rest/slayrobotoservices/slayroboto");
 				connSlayRoboto = (HttpURLConnection) urlSlayRoboto.openConnection();
 				InputStream isSlayRoboto = null;
@@ -90,8 +80,9 @@ public class slayrobotohttp extends Thread {
 					int lineColor = Integer.parseInt(values[3]);
 					DEObj.setLineColor(lineColor);
 				}
-
-				if (DEObj.getCMD() == 0) {
+				
+				// Send Cycle to database if robot detects an obstacle
+				if (DEObj.getStatus() == 1) {
 					int obstacleDistanceValue = DEObj.getObstacleDistance();
 					urlObstacleDistance = new URL("http://" + ipAddress
 							+ ":8080/rest/obstacledetectedservices/addobstacle/" + obstacleDistanceValue);
@@ -111,6 +102,7 @@ public class slayrobotohttp extends Thread {
 					System.out.println("Obstacle Distance: " + sObstacleDistance);
 				}
 
+				
 				// Sending values to the Light Table in the database
 				urlColorSensor = new URL(
 						"http://" + ipAddress + ":8080/rest/lightservices/colorsensor/1/" + DEObj.getLineChecker());
@@ -127,11 +119,9 @@ public class slayrobotohttp extends Thread {
 				brColorSensor = new BufferedReader(isrColorSensor);
 //				String sColorSensor = null;
 //				while ((sColorSensor = brColorSensor.readLine()) != null) {
-//
 //				}
-
+				
 				Thread.sleep(1000); // wait for 1 second before trying again
-
 			}
 
 		} catch (Exception e) {
@@ -155,12 +145,12 @@ public class slayrobotohttp extends Thread {
 					connObstacleDistance.disconnect();
 
 				// LineColor from ColorSensor
-//				if (brColorSensor != null)
-//					brColorSensor.close();
-//				if (isrColorSensor != null)
-//					isrColorSensor.close();
-//				if (connColorSensor != null)
-//					connColorSensor.disconnect();
+				if (brColorSensor != null)
+					brColorSensor.close();
+				if (isrColorSensor != null)
+					isrColorSensor.close();
+				if (connColorSensor != null)
+					connColorSensor.disconnect();
 
 			} catch (IOException e) {
 				e.printStackTrace();

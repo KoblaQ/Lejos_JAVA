@@ -11,12 +11,9 @@ public class ObstacleDetector extends Thread {
 	//Initialize the us class as EV3UltrasonicSensor with port s1
 	private EV3UltrasonicSensor obstacleChecker; // = new EV3UltrasonicSensor(SensorPort.S1);
 	
-	// SampleProvider class that gets the values from the sensor(In this case distance from the ultrasonic sensor)
-	//public static SampleProvider distance = obstacleChecker.getDistanceMode();
 	
 	//Distance value that it keeps reading to detect the object.
 	int distanceValue;
-//	private final int securityDistance = 20; // Minimum distance to the obstacle
 	
 	
 	
@@ -39,13 +36,12 @@ public class ObstacleDetector extends Thread {
 			float[] sample = new float[distance.sampleSize()];
 			distance.fetchSample(sample, 0);
 			float distanceValue = (int)(sample[0]*100);
+
+			DEObj.setObstacleDistance(DEObj.getCycle()); // Set the obstacle constantly here 
 			
 			if(distanceValue > securityDistance){
 				//Relay message to dataExchange to execute command 1 (meaning no obstacle detected)
 				DEObj.setCMD(1);
-				//Send the distance at which it noticed the obstacle to the database.
-//				int newDistance = Math.round(distanceValue); // Convert it to an int from a float 
-//				DEObj.setObstacleDistance(newDistance);
 			}else {
 				
 				DEObj.setCMD(0);

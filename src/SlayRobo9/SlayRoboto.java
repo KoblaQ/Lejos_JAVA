@@ -18,10 +18,7 @@ public class SlayRoboto {
 		ODObj.start();
 		LFObj.start();
 		CSObj.start();
-		SRHttp.start();
-//			START IT HERE TOO JUST LIKE ABOVE
-//			REMEMBER TO CHANGE ALL THE HARDCODED VALUES IN THE OTHER OBJECTS TO VARIABLES DERRIVED FROM THE DATAEXCHAGE eg. DE.basespeed 
-//			BONUS POINTS: ADD A BUTTON TO START AND STOP THE ROBOT (must be connected to the database) 
+		SRHttp.start(); //Slayrobotohttp 
 
 		while (!(Button.getButtons() != 0)) {
 			// Break if button is pressed

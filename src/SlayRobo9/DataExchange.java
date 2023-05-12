@@ -56,6 +56,7 @@ public class DataExchange {
 	int obstacleDistance; // Being sent to the database from the robot
 	int safetyDistance;
 	int lineColor;
+	int status;
 
 	public int getNewCycle() {
 		return newCycle;
@@ -95,6 +96,14 @@ public class DataExchange {
 
 	public void setLineColor(int lineColor) {
 		this.lineColor = lineColor;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 
